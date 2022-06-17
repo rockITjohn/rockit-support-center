@@ -21,7 +21,7 @@ const QnABot = () => {
   ];
 
   return (
-    <section className="w-full h-full border">
+    <section className="w-full h-full ">
       <h1 className=" text-center text-2xl py-2">Quick Answers</h1>
       <div className="grid mx-2">
         {qnb_bot_answers.map(({ question, answer, id }) => {
