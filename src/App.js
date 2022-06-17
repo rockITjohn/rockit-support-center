@@ -1,18 +1,14 @@
 import "./App.css";
-import QueryBox from "./components/query-box/query-box";
-import Header from "./components/header/header";
-import ResultsPanel from "./components/results-panel/results-panel";
-import Hero from "./components/hero/hero";
+import HomePage from "./components/pages/home-page/home-page";
 
 function App() {
+  let queryParams = new URLSearchParams(window.location.search);
+  let queryString = queryParams.get("search");
+  console.log("queryString", queryString, "queryParams", queryParams);
+  // console.log("window.location.search", window.location);
   return (
     <div className="h-screen">
-      <Header />
-      <Hero />
-      <div>
-        <QueryBox />
-        <ResultsPanel />
-      </div>
+      <HomePage />
     </div>
   );
 }

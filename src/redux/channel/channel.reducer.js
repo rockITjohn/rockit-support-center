@@ -1,4 +1,4 @@
-import ChannelActionTypes from "./channel.types";
+import ChannelActionTypes from "../channel.types";
 
 const INITIAL_STATE = {
   channel: "default",
