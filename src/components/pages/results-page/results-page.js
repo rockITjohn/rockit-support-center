@@ -7,13 +7,9 @@ const ResultsPage = () => {
   const { activeChat } = useSelector((state) => state.chatReducer);
   return (
     <section>
-      <div className="md:grid md:grid-cols-4 gap-4 container mx-auto h-screen my-8 px-4">
-        <div className="md:col-span-1" />
+      <div className="container mx-auto h-screen my-8 px-4">
         <div className="md:col-span-2">
           <ResultPanel />
-        </div>
-        <div className="md:col-span-1">
-          <InitiateChatBox />
         </div>
       </div>
       {activeChat ? (

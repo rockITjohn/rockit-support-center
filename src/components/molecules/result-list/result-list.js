@@ -52,47 +52,47 @@ const ResultList = () => {
 
   return (
     <div>
-      <ResultButtons
-        handleAllClick={handleAllClick}
-        handleAnswersClick={handleAnswersClick}
-        handleDocumentsClick={handleDocumentsClick}
-        handleFaqsClick={handleFaqsClick}
-        answerItems={answerItems}
-        faqItems={faqItems}
-        boldedItem={boldedItem}
-        documentItems={filteredDocumentItems}
-      />
-      {answerItems.length > 0 && showAnswers ? (
-        <div className="mb-5">
-          <div className="border-b-2 mb-3">
-            <p className="text-lg">Top Answers</p>
-          </div>
-          <AnswerList answerItems={answerItems} />
+      <div className="grid grid-cols-3 gap-3 px-2 py-2">
+        <div className="col-span-1">
+          {answerItems.length > 0 && showAnswers ? (
+            <div className="mb-5 px-2 py-2">
+              <div className="border-b-2 mb-3 flex justify-between">
+                <p className="text-lg">Top Answers</p>
+                <p className="">Total found: {answerItems.length}</p>
+              </div>
+              <AnswerList answerItems={answerItems} />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-      ) : (
-        ""
-      )}
-      {faqItems.length > 0 && showFaqs ? (
-        <div className="mb-5">
-          <div className="border-b-2 mb-3">
-            <p className="text-lg">Frequently Asked Questions</p>
-          </div>
-          <FaqList faqItems={faqItems} />
+        <div className="col-span-1">
+          {faqItems.length > 0 && showFaqs ? (
+            <div className="mb-5 bg-gray-200 px-2 py-2">
+              <div className="border-b-2 border-gray-300 mb-3 flex justify-between">
+                <p className="text-lg">Frequently Asked Questions</p>
+                <p className="">Total found: {faqItems.length}</p>
+              </div>
+              <FaqList faqItems={faqItems} />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-      ) : (
-        ""
-      )}
-      {documentItems.length > 0 && showDocuments ? (
-        <div className="mb-5">
-          <div className="border-b-2 mb-3 flex justify-between">
-            <p className="text-lg">Documents</p>
-            <p className="">Total found: {filteredDocumentItems.length}</p>
-          </div>
-          <DocumentList documentItems={filteredDocumentItems} />
+        <div className="col-span-1">
+          {documentItems.length > 0 && showDocuments ? (
+            <div className="mb-5 px-2 py-2">
+              <div className="border-b-2 mb-3 flex justify-between">
+                <p className="text-lg">Documents</p>
+                <p className="">Total found: {filteredDocumentItems.length}</p>
+              </div>
+              <DocumentList documentItems={filteredDocumentItems} />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-      ) : (
-        ""
-      )}
+      </div>
     </div>
   );
 };

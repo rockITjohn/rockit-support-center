@@ -8,13 +8,12 @@ const InitiateChatBox = () => {
     dispatch(setActiveChat(true));
   };
   return (
-    <div className="border py-6 px-6 rounded bg-primary-blue text-white">
-      <p className="font-semibold pb-2">Can't Find What You're Looking For?</p>
-      <p className="text-sm pb-2">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+    <div className=" py-6 rounded  text-white">
+      <p className="font-semibold pb-2 inline-block">
+        Can't Find What You're Looking For?
       </p>
       <button
-        className="font-bold text-center text-white rounded px-6 py-2 w-full bg-primary-orange"
+        className="font-bold text-center text-white rounded px-6 py-2 mx-5 bg-primary-orange "
         onClick={handleStartLiveChat}
       >
         Start a Live Chat

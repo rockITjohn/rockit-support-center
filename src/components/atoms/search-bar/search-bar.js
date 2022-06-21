@@ -22,21 +22,15 @@ const SearchBar = () => {
   const [showAlert, setShowAlert] = useState(false);
   const dispatch = useDispatch();
 
+  console.log("searchTerm", searchTerm);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (searchTerm.length < 1) {
       setAlert();
       return;
     }
-    await submitSearch();
-    // resetReduxStateBeforeQuery();
-    // dispatch(setLoadingSearch(true));
-    // try {
-    //   await queryKendraAndSortResults(searchTerm);
-    //   setLoadingAndActiveSearchAfterSearch();
-    // } catch (error) {
-    //   console.log("Error handling Submit", error);
-    // }
+    await submitSearch(searchTerm);
   };
 
   const resetReduxStateBeforeQuery = () => {
