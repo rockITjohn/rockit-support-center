@@ -36,13 +36,11 @@ export const sortKendraResults = (kendraResults, dispatch) => {
   let documentItems = [];
   let faqItems = [];
   kendraResults.ResultItems.forEach((resultItem) => {
-    console.log("Result Item in helper.js", resultItem, resultItem.Type);
     if (resultItem.Type === "ANSWER") {
       answerItems.push(resultItem);
     } else if (resultItem.Type === "DOCUMENT") {
       documentItems.push(resultItem);
     } else if (resultItem.Type === "QUESTION_ANSWER") {
-      console.log("Running QUATION_ANSWER", resultItem.Type);
       faqItems.push(resultItem);
     }
   });
