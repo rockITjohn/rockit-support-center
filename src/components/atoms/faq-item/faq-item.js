@@ -5,7 +5,7 @@ const FaqItem = ({ item }) => {
     item.AdditionalAttributes[1].Value.TextWithHighlightsValue.Text;
   const url = item.DocumentURI;
   return (
-    <div className="border-b-2 px-5 py-5">
+    <div className="border-b-2 border-gray-300 px-5 py-5">
       <p className="font-semibold py-2 ">{question}</p>
       <p className="pb-2">{answer}</p>
       {url !== "" ? (

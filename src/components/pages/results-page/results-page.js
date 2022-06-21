@@ -7,7 +7,7 @@ const ResultsPage = () => {
   const { activeChat } = useSelector((state) => state.chatReducer);
   return (
     <section>
-      <div className="container mx-auto h-screen my-8 px-4">
+      <div className="container mx-auto h-screen my-2 px-4">
         <div className="md:col-span-2">
           <ResultPanel />
         </div>
