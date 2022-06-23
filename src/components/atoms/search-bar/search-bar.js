@@ -23,7 +23,6 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   let searchQueryParams = new URLSearchParams(window.location.search);
-  console.log(searchQueryParams.get("search"));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,15 +31,6 @@ const SearchBar = () => {
       return;
     }
     await submitSearch(searchTerm);
-  };
-
-  const setQueryParameterOnSearch = () => {
-    searchQueryParams.set("search", searchTerm);
-    window.history.pushState(
-      {},
-      undefined,
-      encodeURI(searchQueryParams.toString())
-    );
   };
 
   const resetReduxStateBeforeQuery = () => {
@@ -66,8 +56,20 @@ const SearchBar = () => {
     dispatch(setActiveSearch(true));
   };
 
+  const setQueryStringParameterOnSearch = (searchTerm) => {
+    searchQueryParams.set("search", searchTerm);
+    window.history.pushState(
+      {},
+      "",
+      "?" + encodeURI(searchQueryParams.toString())
+    );
+  };
+
   const submitSearch = async (searchTerm) => {
-    setQueryParameterOnSearch();
+    if (searchQueryParams.get("search") !== "null") {
+      console.log("Adding search param in submitSearch");
+      setQueryStringParameterOnSearch(searchTerm);
+    }
     resetReduxStateBeforeQuery();
     dispatch(setLoadingSearch(true));
     try {
@@ -96,12 +98,12 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-    let queryString = decodeURI(searchQueryParams.get("search"));
-    console.log({ queryString });
-    if (queryString !== "null") {
+    let queryString = searchQueryParams.get("search");
+    if (queryString !== null) {
       setSearchTerm(queryString);
       submitSearch(queryString);
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
