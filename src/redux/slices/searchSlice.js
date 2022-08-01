@@ -10,7 +10,7 @@ const initialState = {
   documentItems: [],
   documentItemTypes: [],
   filteredDocumentItems: [],
-  selectedDocumentType: "",
+  selectedDocumentType: "All",
   faqItems: [],
   otherItems: [],
   totalNumberOfResults: 0,
@@ -60,7 +60,7 @@ export const searchSlice = createSlice({
       state.selectedDocumentType = action.payload;
     },
     setFilteredDocumentItems: (state, action) => {
-      if (action.payload === "all") {
+      if (action.payload === "All") {
         state.filteredDocumentItems = state.documentItems;
       } else {
         state.filteredDocumentItems = state.documentItems.filter((docItem) => {

@@ -6,15 +6,14 @@ import {
   setSelectedDocumentType,
   setFilteredDocumentItems,
 } from "../../../redux/slices/searchSlice";
+import { ReactComponent as DownSvg } from "../../../assets/chevron-down.svg";
 
-const DocumentPopover = ({
-  handleDocumentsClick,
-  documentItems,
-  boldedItem,
-}) => {
+const DocumentPopover = () => {
   // Redux logic
   const dispatch = useDispatch();
-  const { documentItemTypes } = useSelector((state) => state.searchReducer);
+  const { documentItemTypes, selectedDocumentType } = useSelector(
+    (state) => state.searchReducer
+  );
 
   // Filter document item types to remove duplicates
   const docItemTypes = new Set(documentItemTypes);
@@ -23,6 +22,7 @@ const DocumentPopover = ({
   const handleDocumentTypeSelection = (docType) => {
     dispatch(setSelectedDocumentType(docType));
     dispatch(setFilteredDocumentItems(docType));
+    setPopoverShow(false);
   };
 
   // Popper Logic
@@ -30,17 +30,8 @@ const DocumentPopover = ({
   const btnRef = createRef();
   const popoverRef = createRef();
   const openPopover = () => {
-    console.log("Running openPopover");
     createPopper(btnRef.current, popoverRef.current, {
-      placement: "right-start",
-      modifiers: [
-        {
-          name: "offset",
-          options: {
-            offset: [-85, 15],
-          },
-        },
-      ],
+      placement: "bottom",
     });
     setPopoverShow(true);
   };
@@ -54,20 +45,17 @@ const DocumentPopover = ({
         {/* The below is the code for the button that you click on to initiate the popout */}
         <div>
           <button
-            className={`disabled:cursor-not-allowed disabled:text-gray-200 font-bold + ${
-              boldedItem === "documents"
-                ? "text-black underline decoration-primary-blue underline-offset-[13px] decoration-2 outline-none focus:outline-none ease-linear transition-all duration-150"
-                : "text-gray-400"
-            }`}
-            disabled={documentItems.length === 0}
+            className="text-black ease-linear transition-all duration-700"
             type="button"
             onClick={() => {
               popoverShow ? closePopover() : openPopover();
-              handleDocumentsClick();
             }}
             ref={btnRef}
           >
-            Documents
+            {selectedDocumentType}
+            <span className="inline-block">
+              <DownSvg className="h-4 my-auto mx-auto" />
+            </span>
           </button>
           {/* This is the code for the popover */}
           <div
@@ -84,7 +72,7 @@ const DocumentPopover = ({
                 </div>
                 <div className="col-span-1 grid">
                   <button
-                    onClick={() => handleDocumentTypeSelection("all")}
+                    onClick={() => handleDocumentTypeSelection("All")}
                     className="cursor-pointer"
                   >
                     All
@@ -96,6 +84,18 @@ const DocumentPopover = ({
                         key={docType}
                         className="cursor-pointer"
                       >
+                        {/* TODO: Find a way to sync the below with redux state names  */}
+                        {/* {
+                          docType == "pdf" ? "PDF" :
+                          docType == "pptx" ? "PowerPoint" :
+                          docType == "mp4" ? "Video" :
+                          docType == "mkv" ? "Video":
+                          docType == "webm" ? "Video":
+                          docType == "wav" ? "Audio":
+                          docType == "xlsx" ? "Excel":
+                          docType == "csv" ? "CSV File":
+                          docType
+                        } */}
                         {docType}
                       </button>
                     );

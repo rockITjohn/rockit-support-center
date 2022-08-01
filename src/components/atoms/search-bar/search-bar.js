@@ -113,7 +113,7 @@ const SearchBar = () => {
           <input
             type="search"
             results="5"
-            className="h-14 w-full rounded-lg rounded-r-none items-start placeholder:text-sm px-4 bg-faq-gray col-span-9 focus:outline-none"
+            className="h-12 md:h-14 w-full rounded-lg rounded-r-none items-start placeholder:text-sm px-4 bg-faq-gray col-span-9 focus:outline-none"
             placeholder="Just ask me..."
             onChange={handleChange}
             value={searchTerm}

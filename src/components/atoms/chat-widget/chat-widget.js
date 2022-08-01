@@ -66,11 +66,11 @@ const ChatWidget = () => {
       console.log("Running ChatInterface.initiateChat");
       connect.ChatInterface.initiateChat(
         {
-          name: customerName,
+          name: "Customer",
           region,
           apiGatewayEndpoint,
           contactAttributes: JSON.stringify({
-            customerName: customerName,
+            // customerName: customerName,
             previousSearches: JSON.stringify(previousSearches),
           }),
           contactFlowId,
