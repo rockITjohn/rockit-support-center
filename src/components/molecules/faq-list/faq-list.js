@@ -2,7 +2,7 @@ import FaqItem from "../../atoms/faq-item/faq-item";
 
 const FaqList = ({ faqItems }) => {
   return (
-    <div>
+    <div className="">
       {faqItems.map((item) => (
         <div key={item.Id} className="my-2">
           <FaqItem item={item} />

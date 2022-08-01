@@ -10,7 +10,7 @@ const initialState = {
   documentItems: [],
   documentItemTypes: [],
   filteredDocumentItems: [],
-  selectedDocumentType: "",
+  selectedDocumentType: "All",
   faqItems: [],
   otherItems: [],
   totalNumberOfResults: 0,
@@ -43,11 +43,9 @@ export const searchSlice = createSlice({
       state.answerItems = action.payload;
     },
     setDocumentItems: (state, action) => {
-      console.log("Payload from setDocumentItems", action.payload);
       state.documentItems = action.payload;
       state.filteredDocumentItems = action.payload;
       action.payload.forEach((docItem) => {
-        console.log({ docItem });
         let fileType = docItem.DocumentId.split(".").pop();
         state.documentItemTypes.push(fileType);
       });
@@ -62,11 +60,10 @@ export const searchSlice = createSlice({
       state.selectedDocumentType = action.payload;
     },
     setFilteredDocumentItems: (state, action) => {
-      if (action.payload === "all") {
+      if (action.payload === "All") {
         state.filteredDocumentItems = state.documentItems;
       } else {
         state.filteredDocumentItems = state.documentItems.filter((docItem) => {
-          console.log("docItem in redux/setFilteredDocumentItems");
           return docItem.DocumentId.includes(action.payload);
         });
       }

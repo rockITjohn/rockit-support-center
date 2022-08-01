@@ -47,3 +47,7 @@
   );
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#f19d39", endColorstr="#0051a0", GradientType=1 );
 }
+
+.check-background-sizes {
+  @apply bg-blue-100 sm:bg-orange-100 md:bg-red-100 lg:bg-green-100;
+}

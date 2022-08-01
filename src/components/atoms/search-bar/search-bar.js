@@ -22,21 +22,15 @@ const SearchBar = () => {
   const [showAlert, setShowAlert] = useState(false);
   const dispatch = useDispatch();
 
+  let searchQueryParams = new URLSearchParams(window.location.search);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (searchTerm.length < 1) {
       setAlert();
       return;
     }
-    await submitSearch();
-    // resetReduxStateBeforeQuery();
-    // dispatch(setLoadingSearch(true));
-    // try {
-    //   await queryKendraAndSortResults(searchTerm);
-    //   setLoadingAndActiveSearchAfterSearch();
-    // } catch (error) {
-    //   console.log("Error handling Submit", error);
-    // }
+    await submitSearch(searchTerm);
   };
 
   const resetReduxStateBeforeQuery = () => {
@@ -49,7 +43,6 @@ const SearchBar = () => {
     dispatch(setTotalNumberOfResults(0));
   };
 
-  // TODO: Reject query if searchTerm is empty
   const queryKendraAndSortResults = async (searchTerm) => {
     const kendraResults = await getKendraResults(searchTerm);
     dispatch(setCurrentSearchTerm(searchTerm));
@@ -63,14 +56,27 @@ const SearchBar = () => {
     dispatch(setActiveSearch(true));
   };
 
+  const setQueryStringParameterOnSearch = (searchTerm) => {
+    searchQueryParams.set("search", searchTerm);
+    window.history.pushState(
+      {},
+      "",
+      "?" + encodeURI(searchQueryParams.toString())
+    );
+  };
+
   const submitSearch = async (searchTerm) => {
+    if (searchQueryParams.get("search") !== "null") {
+      console.log("Adding search param in submitSearch");
+      setQueryStringParameterOnSearch(searchTerm);
+    }
     resetReduxStateBeforeQuery();
     dispatch(setLoadingSearch(true));
     try {
       await queryKendraAndSortResults(searchTerm);
       setLoadingAndActiveSearchAfterSearch();
     } catch (error) {
-      console.log("ERror handling submit", error);
+      console.log("Error handling submit", error);
     }
   };
 
@@ -78,12 +84,6 @@ const SearchBar = () => {
   //   setSearchTerm("");
   //   e.target.reset();
   // };
-
-  // Get querystring search parameter
-  const checkQueryStringParameter = () => {
-    let queryParams = new URLSearchParams(window.location.search);
-    return queryParams.get("search");
-  };
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -98,29 +98,28 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-    let queryString = checkQueryStringParameter();
-    console.log("queryString", queryString);
+    let queryString = searchQueryParams.get("search");
     if (queryString !== null) {
       setSearchTerm(queryString);
       submitSearch(queryString);
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
     <div className="">
       <form className="w-full grid grid-cols-10" onSubmit={handleSubmit}>
-        <div className="col-span-9">
+        <div className="md:col-span-9 col-span-8">
           <input
             type="search"
             results="5"
-            className="h-14 w-full   rounded-lg rounded-r-none items-start placeholder:text-sm px-4 bg-faq-gray col-span-9 focus:outline-none"
-            name=""
-            id=""
+            className="h-12 md:h-14 w-full rounded-lg rounded-r-none items-start placeholder:text-sm px-4 bg-faq-gray col-span-9 focus:outline-none"
             placeholder="Just ask me..."
             onChange={handleChange}
+            value={searchTerm}
           />
         </div>
-        <button className="bg-primary-orange w-14 h-14 relative rounded-lg rounded-l-none col-span-1">
+        <button className="bg-primary-orange md:w-14 md:h-14 relative rounded-lg rounded-l-none md:col-span-1 col-span-2">
           <SearchSvg className="center" />
         </button>
       </form>

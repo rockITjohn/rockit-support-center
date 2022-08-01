@@ -10,7 +10,7 @@ const AnswerItem = ({ answer }) => {
   );
 
   return (
-    <div className="border px-5 py-5">
+    <div className=" border-b-2 px-5 py-5">
       <a
         href={url}
         target="_blank"
