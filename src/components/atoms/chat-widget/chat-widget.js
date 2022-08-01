@@ -8,7 +8,7 @@ const ChatWidget = () => {
 
   const dispatch = useDispatch();
   const {
-    customerName,
+    // customerName,
     region,
     apiGatewayEndpoint,
     contactFlowId,

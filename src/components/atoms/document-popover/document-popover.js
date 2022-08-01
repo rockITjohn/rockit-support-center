@@ -7,11 +7,12 @@ import {
   setFilteredDocumentItems,
 } from "../../../redux/slices/searchSlice";
 import { ReactComponent as DownSvg } from "../../../assets/chevron-down.svg";
+import { ReactComponent as UpSvg } from "../../../assets/chevron-up.svg";
 
 const DocumentPopover = () => {
   // Redux logic
   const dispatch = useDispatch();
-  const { documentItemTypes, selectedDocumentType } = useSelector(
+  const { documentItemTypes, selectedFormattedDocumentType } = useSelector(
     (state) => state.searchReducer
   );
 
@@ -21,7 +22,7 @@ const DocumentPopover = () => {
   // Handle document type onClick
   const handleDocumentTypeSelection = (docType) => {
     dispatch(setSelectedDocumentType(docType));
-    dispatch(setFilteredDocumentItems(docType));
+    dispatch(setFilteredDocumentItems());
     setPopoverShow(false);
   };
 
@@ -52,9 +53,13 @@ const DocumentPopover = () => {
             }}
             ref={btnRef}
           >
-            {selectedDocumentType}
+            {selectedFormattedDocumentType}
             <span className="inline-block">
-              <DownSvg className="h-4 my-auto mx-auto" />
+              {popoverShow ? (
+                <UpSvg className="h-5 relative top-[5px]" />
+              ) : (
+                <DownSvg className="h-5 relative top-[5px]" />
+              )}
             </span>
           </button>
           {/* This is the code for the popover */}
@@ -84,18 +89,6 @@ const DocumentPopover = () => {
                         key={docType}
                         className="cursor-pointer"
                       >
-                        {/* TODO: Find a way to sync the below with redux state names  */}
-                        {/* {
-                          docType == "pdf" ? "PDF" :
-                          docType == "pptx" ? "PowerPoint" :
-                          docType == "mp4" ? "Video" :
-                          docType == "mkv" ? "Video":
-                          docType == "webm" ? "Video":
-                          docType == "wav" ? "Audio":
-                          docType == "xlsx" ? "Excel":
-                          docType == "csv" ? "CSV File":
-                          docType
-                        } */}
                         {docType}
                       </button>
                     );

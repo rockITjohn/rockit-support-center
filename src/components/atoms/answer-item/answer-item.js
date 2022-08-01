@@ -10,8 +10,8 @@ const AnswerItem = ({ answer }) => {
   );
 
   return (
-    <div className=" border-b-2 px-5 py-5">
-      <a
+    <div className="px-5 py-5">
+      {/* <a
         href={url}
         target="_blank"
         rel="noreferrer"
@@ -19,7 +19,7 @@ const AnswerItem = ({ answer }) => {
         visited:text-purple-600 visited:hover:text-purple-800"
       >
         {title}
-      </a>
+      </a> */}
       <p>{excerpt}</p>
       <div></div>
     </div>

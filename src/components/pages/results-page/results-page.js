@@ -1,5 +1,4 @@
 import ResultPanel from "../../templates/result-panel/result-panel";
-import InitiateChatBox from "../../atoms/initiate-chat/initiate-chat";
 import ChatWidget from "../../atoms/chat-widget/chat-widget";
 import { useSelector } from "react-redux";
 

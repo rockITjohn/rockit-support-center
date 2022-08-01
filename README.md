@@ -1,3 +1,7 @@
+# Notes
+
+- Whenever a new document type is added to S3 bucket, the switch statements in `redux/searchSlice.js` and `components/atoms/document-item.js` must be updated.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

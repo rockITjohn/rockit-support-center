@@ -9,7 +9,6 @@ import {
   setCurrentSearchResults,
   setDocumentItems,
   setAnswerItems,
-  setOtherItems,
   setTotalNumberOfResults,
   addSearchToPreviousSearches,
 } from "../../../redux/slices/searchSlice";
@@ -39,7 +38,6 @@ const SearchBar = () => {
     dispatch(setCurrentSearchResults(undefined));
     dispatch(setDocumentItems([]));
     dispatch(setAnswerItems([]));
-    dispatch(setOtherItems([]));
     dispatch(setTotalNumberOfResults(0));
   };
 

@@ -3,7 +3,6 @@ import QueryBox from "../../atoms/query-box/query-box";
 import ResultsPage from "../results-page/results-page";
 import Spinner from "../../atoms/spinner/spinner";
 import { useSelector } from "react-redux";
-import InitiateChatBox from "../../atoms/initiate-chat/initiate-chat";
 import ChatWidget from "../../atoms/chat-widget/chat-widget";
 
 const HomePage = () => {
