@@ -3,7 +3,7 @@ import InitiateChatBox from "../initiate-chat/initiate-chat";
 
 const QueryBox = () => {
   return (
-    <section className="w-full sm:pb-4">
+    <section className="w-full pb-4">
       <div className="px-10 md:px-18 lg:px-32">
         <div className="py-2 md:grid md:grid-cols-4">
           <div className="md:col-span-3">

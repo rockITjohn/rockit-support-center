@@ -46,17 +46,18 @@ const DocumentItem = ({ documentItem }) => {
           {/* TODO: Change to break-normal once we get proper titles for our documents */}
           <a
             className="font-semibold py-2  text-blue-600 hover:text-blue-800
-              visited:text-purple-600 visited:hover:text-purple-800 break-all "
+              visited:text-purple-600 visited:hover:text-purple-800 break-all flex"
             href={url}
             target="_blank"
             rel="noreferrer"
           >
-            {title}
-            <span className="inline ">
-              <LinkSvg className="h-5 inline" />
+            <span className="block my-auto pr-2">
+              {/* To change the color of the below svg, change within the SVG file */}
+              <LinkSvg className="h-6 inline " />
             </span>
+            {title}
           </a>
-          <div className="mt-1">File Type: {fileType}</div>
+          <div className="mt-1 font-semibold text-blue-600">{fileType}</div>
         </div>
       )}
     </div>

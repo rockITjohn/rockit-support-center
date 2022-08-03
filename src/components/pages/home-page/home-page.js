@@ -20,6 +20,7 @@ const HomePage = () => {
       <div className="relative">
         {loadingSearch && (
           <div className="absolute right-1/2">
+            {/* TODO: Fix why spinner is offset */}
             <Spinner />
           </div>
         )}

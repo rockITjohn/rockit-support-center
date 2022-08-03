@@ -9,7 +9,7 @@ const InitiateChatBox = () => {
   };
   return (
     <div className=" rounded text-white md:grid text-center  flex mt-2 md:mt-0 ">
-      <p className="font-semibold py-2 inline-block">
+      <p className="font-semibold py-2 inline-block text-center">
         Can't Find What You're Looking For?
       </p>
       <div className="h-5">
