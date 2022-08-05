@@ -1,4 +1,4 @@
-import DocumentItem from "../../atoms/document-item/document-item";
+import DocumentDivider from "../../atoms/document-divider/document-divider";
 
 const DocumentList = ({ documentItems }) => {
   console.log("Document Items in DocumentList", documentItems);
@@ -7,7 +7,7 @@ const DocumentList = ({ documentItems }) => {
       {documentItems.length > 0 ? (
         documentItems.map((documentItem) => (
           <div key={documentItem.Id} className="my-2">
-            <DocumentItem documentItem={documentItem} />
+            <DocumentDivider documentItem={documentItem} />
           </div>
         ))
       ) : (

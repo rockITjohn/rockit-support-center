@@ -16,39 +16,52 @@ const VideoItem = ({ title, url, fileType }) => {
   const posterUrl = `${url}#t=2.0`;
 
   return (
-    <div className="">
+    <div>
       <div>
-        <div className="flex flex-col">
-          <div className="" onClick={handleVideoClick}>
+        <div className="flex flex-col lg:flex-row">
+          {/* Video Thumbnail */}
+          <div
+            onClick={handleVideoClick}
+            className="w-full lg:w-1/2 lg:order-2 "
+          >
             <video
+              className="rounded px-5  mx-auto my-auto w-1/2 lg:w-full cursor-pointer"
               preload="metadata"
               onPlay={handleVideoClick}
-              width="100"
-              height="100"
               poster={posterUrl}
               alt="Video"
-              className="rounded px-5 py-5 mx-auto my-auto w-10/12 lg:w-3/4 "
+              // className="rounded px-5  mx-auto my-auto w-1/2 lg:w-1/3"
             >
               <source src={posterUrl} type="video/mp4" />
             </video>
           </div>
-          <div className="">
-            <p
-              className="font-semibold py-2  text-blue-600 hover:text-blue-800
-            visited:text-purple-600 visited:hover:text-purple-800 break-all cursor-pointer flex"
-              onClick={handleVideoClick}
-            >
-              <span className="block my-auto pr-2 ">
-                <VideoSvg className="h-6 inline text-blue-600" />
-              </span>
-              {title}
-            </p>
-            <div className="mt-1 font-semibold text-blue-600">{fileType}</div>
+          {/* Text */}
+          <div className="lg:order-1" onClick={handleVideoClick}>
+            {/* SVG */}
+            <div className="flex">
+              <div className="col-span-1 flex ">
+                <div className="my-auto mx-auto text-center w-8 cursor-pointer">
+                  <VideoSvg className=" text-blue-600" />
+                </div>
+              </div>
+              {/* Title and File Type */}
+              <div className="col-span-5">
+                <p
+                  className="font-semibold py-2  text-blue-600 hover:text-blue-800
+                visited:text-purple-600 visited:hover:text-purple-800 break-normal cursor-pointer"
+                >
+                  <div className="px-2">{title}</div>
+                </p>
+                <div className="mt-1 font-semibold text-blue-600 px-2">
+                  {fileType}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       {showModal && (
-        <div className="">
+        <div>
           <Modal title={title} url={url} />
         </div>
       )}
