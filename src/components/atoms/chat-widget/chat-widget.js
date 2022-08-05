@@ -9,6 +9,7 @@ const ChatWidget = () => {
   const dispatch = useDispatch();
   const {
     // customerName,
+    emailAddress,
     region,
     apiGatewayEndpoint,
     contactFlowId,
@@ -46,6 +47,16 @@ const ChatWidget = () => {
     console.log("Failure", e);
   };
 
+  const getContactAttributes = () => {
+    let attrs = {
+      previousSearches: JSON.stringify(previousSearches),
+    };
+    if (emailAddress !== "") {
+      attrs = { ...attrs, emailAddress: emailAddress };
+    }
+    return JSON.stringify(attrs);
+  };
+
   useEffect(() => {
     try {
       console.log("Running ChatInterface.init");
@@ -69,10 +80,11 @@ const ChatWidget = () => {
           name: "Customer",
           region,
           apiGatewayEndpoint,
-          contactAttributes: JSON.stringify({
-            // customerName: customerName,
-            previousSearches: JSON.stringify(previousSearches),
-          }),
+          // contactAttributes: JSON.stringify({
+          //   // customerName: customerName,
+          //   previousSearches: JSON.stringify(previousSearches),
+          // }),
+          contactAttributes: getContactAttributes(),
           contactFlowId,
           instanceId,
           featurePermissions: {

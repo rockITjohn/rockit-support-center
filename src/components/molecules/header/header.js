@@ -1,3 +1,5 @@
+import EmailPopover from "../../atoms/email-popover/email-popover";
+
 const Header = () => {
   return (
     <header className="px-5 w-full h-16 flex justify-between items-center z-10 relative shadow">
@@ -13,6 +15,9 @@ const Header = () => {
           Call us at{" "}
           <span className="font-bold cursor-pointer">855-745-1840</span>
         </a>
+        <div>
+          <EmailPopover />
+        </div>
       </div>
     </header>
   );

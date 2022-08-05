@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   region: "us-east-1",
   customerName: "John Butler",
+  emailAddress: "",
   username: "John",
   apiGatewayEndpoint:
     "https://r0pkyykhlc.execute-api.us-east-1.amazonaws.com/Prod/",
@@ -26,6 +27,9 @@ export const appSlice = createSlice({
     setCustomerName: (state, action) => {
       state.customerName = action.payload;
     },
+    setEmailAddress: (state, action) => {
+      state.emailAddress = action.payload;
+    },
     setUsername: (state, action) => {
       state.username = action.payload;
     },
@@ -43,6 +47,7 @@ export const appSlice = createSlice({
 
 export const {
   setAppAttribute,
+  setEmailAddress,
   setCustomerName,
   setUsername,
   setContactAttr,
