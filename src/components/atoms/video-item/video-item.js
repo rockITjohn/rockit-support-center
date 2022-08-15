@@ -1,16 +1,16 @@
 import { useSelector } from "react-redux";
 import { ReactComponent as VideoSvg } from "../../../assets/video.svg";
-import Modal from "../modal/modal";
+import VideoModal from "../video-modal/video-modal";
 import { useDispatch } from "react-redux";
-import { setShowModal } from "../../../redux/slices/searchSlice";
+import { setShowFileTypeModal } from "../../../redux/slices/searchSlice";
 
 const VideoItem = ({ title, url, fileType }) => {
-  const { showModal } = useSelector((state) => state.searchReducer);
+  const { showFileTypeModal } = useSelector((state) => state.searchReducer);
   const dispatch = useDispatch();
   const handleVideoClick = (e) => {
     console.log("Event to handleVideoClick", e);
     e.target.pause();
-    dispatch(setShowModal(true));
+    dispatch(setShowFileTypeModal(true));
   };
 
   const posterUrl = `${url}#t=2.0`;
@@ -46,12 +46,12 @@ const VideoItem = ({ title, url, fileType }) => {
               </div>
               {/* Title and File Type */}
               <div className="col-span-5">
-                <p
+                <div
                   className="font-semibold py-2  text-blue-600 hover:text-blue-800
                 visited:text-purple-600 visited:hover:text-purple-800 break-normal cursor-pointer"
                 >
-                  <div className="px-2">{title}</div>
-                </p>
+                  <p className="px-2">{title}</p>
+                </div>
                 <div className="mt-1 font-semibold text-blue-600 px-2">
                   {fileType}
                 </div>
@@ -60,9 +60,9 @@ const VideoItem = ({ title, url, fileType }) => {
           </div>
         </div>
       </div>
-      {showModal && (
+      {showFileTypeModal && (
         <div>
-          <Modal title={title} url={url} />
+          <VideoModal title={title} url={url} />
         </div>
       )}
     </div>

@@ -5,6 +5,7 @@
 import chatReducer from "./slices/chatSlice";
 import appReducer from "./slices/appSlice";
 import searchReducer from "./slices/searchSlice";
+import persistedReducer from "./slices/persistedSlice";
 import { combineReducers } from "@reduxjs/toolkit";
 
 /**
@@ -25,4 +26,5 @@ export const rootReducer = combineReducers({
   chatReducer,
   appReducer,
   searchReducer,
+  persistedReducer,
 });

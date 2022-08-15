@@ -1,36 +1,37 @@
-import { createRef, useState } from "react";
+import { createRef, useState, useEffect } from "react";
 import { createPopper } from "@popperjs/core";
 import { useDispatch } from "react-redux";
 import { setEmailAddress } from "../../../redux/slices/appSlice";
 import { useSelector } from "react-redux";
+import { setShowEmailModal } from "../../../redux/slices/searchSlice";
 
 const EmailPopover = () => {
-  const [popoverShow, setPopoverShow] = useState(false);
   const [email, setEmail] = useState("");
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const btnRef = createRef();
   const popoverRef = createRef();
 
-  const { emailAddress } = useSelector((state) => state.appReducer);
+  const { showEmailModal } = useSelector((state) => state.searchReducer);
 
-  const openPopover = () => {
+  useEffect(() => {
     createPopper(btnRef.current, popoverRef.current, {
-      placement: "bottom",
-      modifiers: [
-        {
-          name: "offset",
-          options: {
-            offset: [-50, 10],
-          },
-        },
-      ],
+      placement: "right",
+      // modifiers: [
+      //   {
+      //     name: "offset",
+      //     options: {
+      //       offset: [-50, 700],
+      //     },
+      //   },
+      // ],
     });
-    setPopoverShow(true);
-  };
+    // eslint-disable-next-line
+  }, []);
 
   const closePopover = () => {
-    setPopoverShow(false);
+    dispatch(setShowEmailModal(false));
+    // setPopoverShow(false);
   };
 
   const handleInputChange = (e) => {
@@ -42,46 +43,37 @@ const EmailPopover = () => {
   const handleSubmit = (e) => {
     console.log("Event", e);
     e.preventDefault();
+    // Check if email is valid
+    // TODO: Do proper email validation
     if (!email.includes("@")) {
       setShowError(true);
       setTimeout(() => {
         setShowError(false);
       }, 3000);
     } else {
+      // Dispatch email to redux, show success message and close modal
       dispatch(setEmailAddress(email));
       setShowSuccess(true);
       setTimeout(() => {
-        setPopoverShow(false);
+        // setPopoverShow(false);
+        dispatch(setShowEmailModal(false));
         setShowSuccess(false);
       }, 3000);
     }
   };
 
   return (
-    <>
+    <div className="absolute w-60 h-20 z-50 pt-2">
+      <div ref={btnRef}></div>
       <div className="flex flex-wrap">
+        <div />
         {/* The below is the code for the button that you click on to initiate the popout */}
         <div className="w-full text-center">
-          <button
-            // className=" text-black font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            className="text-white"
-            type="button"
-            onClick={() => {
-              popoverShow ? closePopover() : openPopover();
-            }}
-            ref={btnRef}
-          >
-            {emailAddress === "" ? (
-              <p>Current Customer?</p>
-            ) : (
-              <p>Thanks! Change email address?</p>
-            )}
-          </button>
           {/* This is the code for the popover */}
           <div
             className={
-              (popoverShow ? "" : "hidden ") +
-              "bg-white/95 border-0  block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg"
+              (showEmailModal ? "" : "hidden ") +
+              "bg-white border-0  block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg"
             }
             ref={popoverRef}
           >
@@ -118,7 +110,7 @@ const EmailPopover = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

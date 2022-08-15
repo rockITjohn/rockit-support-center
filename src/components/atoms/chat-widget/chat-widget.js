@@ -8,8 +8,6 @@ const ChatWidget = () => {
 
   const dispatch = useDispatch();
   const {
-    // customerName,
-    emailAddress,
     region,
     apiGatewayEndpoint,
     contactFlowId,
@@ -17,7 +15,9 @@ const ChatWidget = () => {
     instanceId,
   } = useSelector((state) => state.appReducer);
 
-  const { previousSearches } = useSelector((state) => state.searchReducer);
+  const { emailAddress, previousSearches, customerName } = useSelector(
+    (state) => state.persistedReducer
+  );
 
   let chatSession;
 
@@ -80,10 +80,6 @@ const ChatWidget = () => {
           name: "Customer",
           region,
           apiGatewayEndpoint,
-          // contactAttributes: JSON.stringify({
-          //   // customerName: customerName,
-          //   previousSearches: JSON.stringify(previousSearches),
-          // }),
           contactAttributes: getContactAttributes(),
           contactFlowId,
           instanceId,

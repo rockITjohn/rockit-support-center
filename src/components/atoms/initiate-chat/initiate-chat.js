@@ -14,8 +14,7 @@ const InitiateChatBox = () => {
       </p>
       <div className="h-5">
         <button
-          className={`font-bold  text-white text-sm rounded px-4 py-2 mx-3 bg-primary-orange md:h-10 md:px-2 md:py-1
-          `}
+          className="font-bold text-white text-sm rounded px-4 py-2 mx-3 bg-primary-orange md:h-10 md:px-2 md:py-1"
           onClick={handleStartLiveChat}
         >
           Start Live Chat

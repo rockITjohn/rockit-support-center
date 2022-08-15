@@ -16,7 +16,7 @@ const QueryBox = () => {
               <SearchBar />
             </div>
           </div>
-          <div className=" md:col-span-1">
+          <div className="md:col-span-1">
             <InitiateChatBox />
           </div>
         </div>

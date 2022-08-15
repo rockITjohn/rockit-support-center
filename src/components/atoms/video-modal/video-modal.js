@@ -1,12 +1,12 @@
 import { useDispatch } from "react-redux";
-import { setShowModal } from "../../../redux/slices/searchSlice";
+import { setShowFileTypeModal } from "../../../redux/slices/searchSlice";
 import ReactPlayer from "react-player/lazy";
 
-const Modal = ({ title, url }) => {
+const VideoModal = ({ title, url }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(setShowModal(false));
+    dispatch(setShowFileTypeModal(false));
   };
 
   const formattedTitle = title.split(".")[0];
@@ -48,4 +48,4 @@ const Modal = ({ title, url }) => {
   );
 };
 
-export default Modal;
+export default VideoModal;

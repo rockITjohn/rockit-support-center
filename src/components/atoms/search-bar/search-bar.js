@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as SearchSvg } from "../../../assets/search.svg";
 import Alert from "../alert/alert";
 import {
@@ -10,11 +10,12 @@ import {
   setDocumentItems,
   setAnswerItems,
   setTotalNumberOfResults,
-  addSearchToPreviousSearches,
+  setHasShownEmailModal,
+  setShowEmailModal,
 } from "../../../redux/slices/searchSlice";
+import { addSearchToPreviousSearches } from "../../../redux/slices/persistedSlice";
 import { getKendraResults } from "../../../api/query-kendra";
 import { sortKendraResults } from "../../../helper/helper";
-import { useEffect } from "react";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,11 +24,19 @@ const SearchBar = () => {
 
   let searchQueryParams = new URLSearchParams(window.location.search);
 
+  const { hasShownEmailModal } = useSelector((state) => state.searchReducer);
+  const { emailAddress } = useSelector((state) => state.persistedReducer);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (searchTerm.length < 1) {
       setAlert();
       return;
+    }
+    // TODO: Open email modal to gather email upon search enter
+    if (!hasShownEmailModal && !emailAddress) {
+      dispatch(setHasShownEmailModal(true));
+      dispatch(setShowEmailModal(true));
     }
     await submitSearch(searchTerm);
   };

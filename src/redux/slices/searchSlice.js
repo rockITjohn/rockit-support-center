@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentSearchTerm: "",
-  previousSearches: [],
   loadingSearch: false,
   activeSearch: false,
   currentSearchResults: {},
@@ -14,7 +13,9 @@ const initialState = {
   selectedDocumentType: ["All"],
   faqItems: [],
   totalNumberOfResults: 0,
-  showModal: false,
+  showFileTypeModal: false,
+  showEmailModal: false,
+  hasShownEmailModal: false,
 };
 
 export const searchSlice = createSlice({
@@ -23,10 +24,6 @@ export const searchSlice = createSlice({
   reducers: {
     setCurrentSearchTerm: (state, action) => {
       state.currentSearchTerm = action.payload;
-      // state.previousSearches.push(action.payload);
-    },
-    addSearchToPreviousSearches: (state, action) => {
-      state.previousSearches.push(action.payload);
     },
     setLoadingSearch: (state, action) => {
       state.loadingSearch = action.payload;
@@ -126,15 +123,20 @@ export const searchSlice = createSlice({
         });
       }
     },
-    setShowModal: (state, action) => {
-      state.showModal = action.payload;
+    setShowFileTypeModal: (state, action) => {
+      state.showFileTypeModal = action.payload;
+    },
+    setShowEmailModal: (state, action) => {
+      state.showEmailModal = action.payload;
+    },
+    setHasShownEmailModal: (state, action) => {
+      state.hasShownEmailModal = action.payload;
     },
   },
 });
 
 export const {
   setCurrentSearchTerm,
-  addSearchToPreviousSearches,
   setLoadingSearch,
   setActiveSearch,
   setCurrentSearchResults,
@@ -144,7 +146,9 @@ export const {
   setTotalNumberOfResults,
   setSelectedDocumentType,
   setFilteredDocumentItems,
-  setShowModal,
+  setShowFileTypeModal,
+  setShowEmailModal,
+  setHasShownEmailModal,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;
