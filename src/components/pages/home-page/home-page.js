@@ -1,10 +1,11 @@
 import Header from "../../molecules/header/header";
-import QueryBox from "../../atoms/query-box/query-box";
+import SearchArea from "../../atoms/search-area/search-area";
 import ResultsPage from "../results-page/results-page";
 import Spinner from "../../atoms/spinner/spinner";
-import EmailModal from "../../atoms/email-modal/email-modal";
+import GetEmailModal from "../../atoms/get-email-modal/get-email-modal";
 import { useSelector } from "react-redux";
 import ChatWidget from "../../atoms/chat-widget/chat-widget";
+import SendEmailModal from "../../atoms/send-email-modal/send-email-modal";
 
 const HomePage = () => {
   const { activeSearch, loadingSearch } = useSelector(
@@ -12,15 +13,18 @@ const HomePage = () => {
   );
   const { activeChat } = useSelector((state) => state.chatReducer);
 
-  const { showEmailModal } = useSelector((state) => state.searchReducer);
+  const { showGetEmailModal, showSendEmailModal } = useSelector(
+    (state) => state.appReducer
+  );
 
   return (
     <div className="h-screen">
       <div className="gradient">
         <Header />
-        <QueryBox />
+        <SearchArea />
       </div>
-      {showEmailModal && <EmailModal />}
+      {showGetEmailModal && <GetEmailModal />}
+      {showSendEmailModal && <SendEmailModal />}
       <div className="relative">
         {loadingSearch && (
           <div className="absolute right-1/2">

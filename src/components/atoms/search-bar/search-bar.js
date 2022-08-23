@@ -10,9 +10,11 @@ import {
   setDocumentItems,
   setAnswerItems,
   setTotalNumberOfResults,
-  setHasShownEmailModal,
-  setShowEmailModal,
 } from "../../../redux/slices/searchSlice";
+import {
+  setShowGetEmailModal,
+  setHasShownGetEmailModal,
+} from "../../../redux/slices/appSlice";
 import { addSearchToPreviousSearches } from "../../../redux/slices/persistedSlice";
 import { getKendraResults } from "../../../api/query-kendra";
 import { sortKendraResults } from "../../../helper/helper";
@@ -24,7 +26,7 @@ const SearchBar = () => {
 
   let searchQueryParams = new URLSearchParams(window.location.search);
 
-  const { hasShownEmailModal } = useSelector((state) => state.searchReducer);
+  const { hasShownGetEmailModal } = useSelector((state) => state.searchReducer);
   const { emailAddress } = useSelector((state) => state.persistedReducer);
 
   const handleSubmit = async (e) => {
@@ -34,9 +36,9 @@ const SearchBar = () => {
       return;
     }
     // TODO: Open email modal to gather email upon search enter
-    if (!hasShownEmailModal && !emailAddress) {
-      dispatch(setHasShownEmailModal(true));
-      dispatch(setShowEmailModal(true));
+    if (!hasShownGetEmailModal && !emailAddress) {
+      dispatch(setHasShownGetEmailModal(true));
+      dispatch(setShowGetEmailModal(true));
     }
     await submitSearch(searchTerm);
   };

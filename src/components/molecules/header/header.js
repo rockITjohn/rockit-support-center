@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setShowEmailModal } from "../../../redux/slices/searchSlice";
+import { setShowGetEmailModal } from "../../../redux/slices/appSlice";
 
 const Header = () => {
   const { emailAddress } = useSelector((state) => state.persistedReducer);
@@ -7,7 +7,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const openEmailModal = () => {
-    dispatch(setShowEmailModal(true));
+    dispatch(setShowGetEmailModal(true));
   };
   console.log("Email address", emailAddress);
   return (

@@ -14,8 +14,8 @@ const initialState = {
   faqItems: [],
   totalNumberOfResults: 0,
   showFileTypeModal: false,
-  showEmailModal: false,
-  hasShownEmailModal: false,
+  showGetEmailModal: false,
+  hasShownGetEmailModal: false,
 };
 
 export const searchSlice = createSlice({
@@ -126,12 +126,6 @@ export const searchSlice = createSlice({
     setShowFileTypeModal: (state, action) => {
       state.showFileTypeModal = action.payload;
     },
-    setShowEmailModal: (state, action) => {
-      state.showEmailModal = action.payload;
-    },
-    setHasShownEmailModal: (state, action) => {
-      state.hasShownEmailModal = action.payload;
-    },
   },
 });
 
@@ -147,8 +141,6 @@ export const {
   setSelectedDocumentType,
   setFilteredDocumentItems,
   setShowFileTypeModal,
-  setShowEmailModal,
-  setHasShownEmailModal,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;

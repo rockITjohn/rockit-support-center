@@ -11,6 +11,9 @@ const initialState = {
   preChatForm: "",
   primaryColor: "",
   description: "",
+  showGetEmailModal: false,
+  hasShownGetEmailModal: false,
+  showSendEmailModal: false,
 };
 
 export const appSlice = createSlice({
@@ -33,6 +36,15 @@ export const appSlice = createSlice({
     setDescription: (state, action) => {
       state.description = action.payload;
     },
+    setShowGetEmailModal: (state, action) => {
+      state.showGetEmailModal = action.payload;
+    },
+    setHasShownGetEmailModal: (state, action) => {
+      state.hasShownGetEmailModal = action.payload;
+    },
+    setShowSendEmailModal: (state, action) => {
+      state.showSendEmailModal = action.payload;
+    },
   },
 });
 
@@ -41,6 +53,9 @@ export const {
   setContactAttr,
   setPrimaryColor,
   setDescription,
+  setShowGetEmailModal,
+  setHasShownGetEmailModal,
+  setShowSendEmailModal,
 } = appSlice.actions;
 
 export default appSlice.reducer;

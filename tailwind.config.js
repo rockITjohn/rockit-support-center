@@ -17,6 +17,10 @@ module.exports = {
         "primary-orange": "#f19d39",
         "secondary-orange": "",
       },
+      screens: {
+        "3xl": "1700px",
+        "4xl": "2100px",
+      },
     },
   },
   variants: {
