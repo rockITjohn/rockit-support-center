@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setShowEmailModal } from "../../../redux/slices/searchSlice";
-
+import { setShowGetEmailModal } from "../../../redux/slices/appSlice";
 import { setEmailAddress } from "../../../redux/slices/persistedSlice";
 import { useSelector } from "react-redux";
-const EmailModal = () => {
+const GetEmailModal = () => {
   const [email, setEmail] = useState("");
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -15,7 +14,7 @@ const EmailModal = () => {
   const { emailAddress } = useSelector((state) => state.persistedReducer);
 
   const closeModal = () => {
-    dispatch(setShowEmailModal(false));
+    dispatch(setShowGetEmailModal(false));
   };
 
   const handleInputChange = (e) => {
@@ -45,7 +44,7 @@ const EmailModal = () => {
       setEmail("");
       setShowSuccess(true);
       setTimeout(() => {
-        dispatch(setShowEmailModal(false));
+        dispatch(setShowGetEmailModal(false));
         setShowSuccess(false);
       }, 2000);
     }
@@ -116,4 +115,4 @@ const EmailModal = () => {
   );
 };
 
-export default EmailModal;
+export default GetEmailModal;

@@ -3,7 +3,7 @@ import { createPopper } from "@popperjs/core";
 import { useDispatch } from "react-redux";
 import { setEmailAddress } from "../../../redux/slices/appSlice";
 import { useSelector } from "react-redux";
-import { setShowEmailModal } from "../../../redux/slices/searchSlice";
+import { setShowGetEmailModal } from "../../../redux/slices/appSlice";
 
 const EmailPopover = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ const EmailPopover = () => {
   const btnRef = createRef();
   const popoverRef = createRef();
 
-  const { showEmailModal } = useSelector((state) => state.searchReducer);
+  const { showGetEmailModal } = useSelector((state) => state.appReducer);
 
   useEffect(() => {
     createPopper(btnRef.current, popoverRef.current, {
@@ -30,7 +30,7 @@ const EmailPopover = () => {
   }, []);
 
   const closePopover = () => {
-    dispatch(setShowEmailModal(false));
+    dispatch(setShowGetEmailModal(false));
     // setPopoverShow(false);
   };
 
@@ -56,7 +56,7 @@ const EmailPopover = () => {
       setShowSuccess(true);
       setTimeout(() => {
         // setPopoverShow(false);
-        dispatch(setShowEmailModal(false));
+        dispatch(setShowGetEmailModal(false));
         setShowSuccess(false);
       }, 3000);
     }
@@ -72,7 +72,7 @@ const EmailPopover = () => {
           {/* This is the code for the popover */}
           <div
             className={
-              (showEmailModal ? "" : "hidden ") +
+              (showGetEmailModal ? "" : "hidden ") +
               "bg-white border-0  block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg"
             }
             ref={popoverRef}
