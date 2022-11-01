@@ -54,6 +54,9 @@ const ChatWidget = () => {
     if (emailAddress !== "") {
       attrs = { ...attrs, emailAddress: emailAddress };
     }
+    if (customerName !== "") {
+      attrs = { ...attrs, customerName: customerName };
+    }
     return JSON.stringify(attrs);
   };
 

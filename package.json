@@ -27,7 +27,8 @@
     "eject": "react-scripts eject",
     "deploy": "aws s3 sync build/ s3://support-center-mockup-rockitdata --acl public-read --region us-east-1 --profile jbutler.aws.1",
     "deploy-rockitdata": "aws s3 sync build/ s3://support-center-rockitdata --acl public-read --region us-east-1 --profile 239485169862_AdministratorAccess",
-    "deploy-mphillipi": "npm run build && aws s3 sync build/ s3://rockitdata-support-center  --region us-east-1 --profile 579890044654_AdministratorAccess"
+    "deploy-mphillipi": "npm run build && aws s3 sync build/ s3://rockitdata-support-center  --region us-east-1 --profile 579890044654_AdministratorAccess",
+    "deploy-exploreconnect": "npm run build && aws s3 sync build/ s3://explore-connect-support-center --region us-east-1 --profile 747690884494_AWSAdministratorAccess"
   },
   "eslintConfig": {
     "extends": [
