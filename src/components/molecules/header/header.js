@@ -22,8 +22,8 @@ const Header = () => {
       <div className="float-right text-center flex flex-col">
         <span className="text-white">
           Call us at{" "}
-          <a href="tel:8557451840" className="font-bold cursor-pointer">
-            855-745-1840
+          <a href="tel:8333782225" className="font-bold cursor-pointer">
+            833-378-2225
           </a>
         </span>
         {/* Opens modal to ask user for email or if they want to change their email */}
@@ -32,11 +32,11 @@ const Header = () => {
           type="button"
           onClick={openEmailModal}
         >
-          {emailAddress === "" ? (
+          {/* {emailAddress === "" ? (
             <p>Current Customer?</p>
           ) : (
             <p>Change email address?</p>
-          )}
+          )} */}
         </button>
       </div>
     </header>

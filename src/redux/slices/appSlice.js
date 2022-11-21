@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 /*
  * rockITphone Information:
  * API Gateway: https://r0pkyykhlc.execute-api.us-east-1.amazonaws.com/Prod/
- * Contact Flow ID: 0e267194-68b1-4bae-bc4d-4c99c839e35e
+ * Contact Flow ID: 4b3644ac-e50b-438e-b883-0ebc90835e65
  * Instance ID: d604894d-373d-4165-a403-25e4e6fbd617
  *
  * Explore Connect Information:
@@ -15,9 +15,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   region: "us-east-1",
   apiGatewayEndpoint:
-    "https://9grtz88f1j.execute-api.us-east-1.amazonaws.com/Prod/",
-  contactFlowId: "75946832-d000-4367-9fd2-308d45d877b4",
-  instanceId: "1e6dd5f6-4499-4428-8a2d-fb54596003bf",
+    "https://r0pkyykhlc.execute-api.us-east-1.amazonaws.com/Prod/",
+  contactFlowId: "4b3644ac-e50b-438e-b883-0ebc90835e65",
+  instanceId: "d604894d-373d-4165-a403-25e4e6fbd617",
   contactAttr: {},
   enableAttachments: false,
   preChatForm: "",

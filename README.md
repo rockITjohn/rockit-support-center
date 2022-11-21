@@ -1,3 +1,5 @@
+# This is the old repository for the JAM page.
+
 # Notes
 
 - Whenever a new document type is added to S3 bucket, the switch statements in `redux/searchSlice.js` and `components/atoms/document-item.js` must be updated.
